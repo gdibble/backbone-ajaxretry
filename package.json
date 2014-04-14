@@ -1,34 +1,36 @@
 {
   "name": "backbone-ajaxretry",
-  "title": "Backbone.js ajaxRetry",
   "description": "Exponentially retry Backbone.ajax requests",
-  "keywords": [
-    "Backbone",
-    "ajax",
-    "tretry"
-  ],
   "version": "1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gdibble/backbone-ajaxretry.git"
-  },
-  "homepage": "https://github.com/gdibble/backbone-ajaxretry",
-  "docs": "https://github.com/gdibble/backbone-ajaxretry",
-  "download": "http://code.jquery.com/#backbone-ajaxretry",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/gdibble/backbone-ajaxretry/blob/master/LICENSE"
-    }
-  ],
   "author": {
     "name": "Gabriel Dibble",
     "url": "https://github.com/gdibble/"
   },
+  "bugs": "https://github.com/gdibble/backbone-ajaxretry/issues",
   "contributors": [
     "gdibble"
   ],
   "dependencies": {
     "underscore": ">= 1.0.0"
-  }
+  },
+  "docs": "https://github.com/gdibble/backbone-ajaxretry",
+  "download": "http://code.jquery.com/#backbone-ajaxretry",
+  "homepage": "https://github.com/gdibble/backbone-ajaxretry",
+  "keywords": [
+    "Backbone",
+    "ajax",
+    "tretry"
+  ],
+  "license": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/gdibble/backbone-ajaxretry/blob/master/LICENSE"
+    }
+  ],
+  "main": "backbone-ajaxretry.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gdibble/backbone-ajaxretry.git"
+  },
+  "title": "Backbone.js ajaxRetry"
 }
