@@ -6,14 +6,13 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
  * Extend Backbone.ajax's proxy of $.ajax with Exponential Retries on req fail
- *  * Create settings file: '/node_modules/backbone-ajaxretry/settings.json'
+ *  * Default settings:
  *      {
  *        "base": 2.67,
  *        "y": 0.25,
  *        "retryCount": 2,
- *        "uri": "http://fooplot.com/plot/3sb933ziv7",
- *        "note": "750ms >> 2,420ms (3.17s Total)"
  *      }
+ *  * Overwrite default settings via set function
  *  * Pass 'exhaust' option as callback - when retries fail, run this function
  *    (if 'exhaust' method is not passed, retries will end without callback)
  *    Example:
@@ -28,13 +27,25 @@
 
 var Backbone = require('backbone');
 var _        = require('underscore');
-var settings = require('./settings.json')
+//Defaults that can be overridden via set
+var settings = {
+  base: 2.67,
+  y: 0.25,
+  retryCount: 2
+};
 
 //-----------------------------------------------------------------------------
 
 
 // Helpers:
 //  some console.logs have been left (as to be enabled) for those curious minds
+
+
+//Update current settings, overriding defaults
+function setOptions(options) {
+  _.defaults(options, settings);
+  settings = options;
+}
 
 //returns delay in milliseconds
 function exponentialDelay(x) {
@@ -79,4 +90,8 @@ Backbone.ajax = function (options) {
     error:   function () { ajaxRetry.apply(this); }
   });
   return Backbone.$.ajax.apply(Backbone.$, args);
+};
+
+module.exports = {
+  set: setOptions
 };
