@@ -57,7 +57,7 @@ function exhausted() {
   // console.log('exhausted', this.url);
   if (this.hasOwnProperty('exhaust')) {
     // console.log('>>> called this.exhaust', this.exhaust);
-    this.exhaust();
+    this.exhaust.apply(this, arguments);
   }
 }
 
@@ -72,10 +72,10 @@ function ajaxRetry() {
         // console.log('recursed', self.url, self.recursed, 'in ' + exponentialDelay(self.recursed) + 'ms');
       }, exponentialDelay(this.recursed));
     } else {
-      exhausted.call(self);
+      exhausted.apply(self, arguments);
     }
   } else {
-    exhausted.call(self);
+    exhausted.apply(self, arguments);
   }
 }
 
@@ -87,7 +87,7 @@ Backbone.ajax = function (options) {
   var args = Array.prototype.slice.call(arguments, 0);
   _.extend(args[0], options ? options : {}, {
     retries: settings.retryCount,
-    error:   function () { ajaxRetry.apply(this); }
+    error:   function () { ajaxRetry.apply(this, arguments); }
   });
   return Backbone.$.ajax.apply(Backbone.$, args);
 };
