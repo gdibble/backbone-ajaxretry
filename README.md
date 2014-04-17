@@ -8,26 +8,9 @@ Extend Backbone.ajax's proxy of $.ajax with Exponential Retries on request fail.
 
 &nbsp;
 
-
 ## Installation
 
-1. Create settings file: '/node_modules/backbone-ajaxretry/settings.json'
-
-  This example settings file will retry Backbone.ajax requests two times with the timing shown in `note`
-
-  ```json
-{
-  "base": 2.67,
-  "y": 0.25,
-  "retryCount": 2,
-  "uri": "http://fooplot.com/plot/3sb933ziv7",
-  "note": "750ms >> 2,420ms (3.17s Total)"
-}
-```
-  *notice: `base`^0 = 1, thus **1 minus `y` gives the initial delay in seconds***
-
-
-2. In your client app 'main.js', simply add:
+In your client app `main.js`, simply add:
 
   ```javascript
 var ajaxRetry = require('backbone-ajaxretry');
@@ -35,11 +18,28 @@ var ajaxRetry = require('backbone-ajaxretry');
 
 &nbsp;
 
-
 ## Usage
-* Pass 'exhaust' option as callback - when retries fail, run this function
+The defaults settings are:
 
-  (if 'exhaust' method is not passed, retries will end without callback)
+```javascript
+{
+  base: 2.718281828,
+  y: 0.25,
+  retryCount: 3
+}
+```
+
+Override any of the default settings using `set`: passing keyword arguments
+
+```javascript
+ajaxRetry.set({ y:0.3 });
+```
+&nbsp;
+
+Pass `exhaust` option as callback - when retries fail, run this 
+
+  * please note that `exhaust` supersedes the `error` callback
+  * if `exhaust` method is not passed, retries will end without callback
 
 ```javascript
 myModel.fetch({
@@ -51,5 +51,7 @@ myModel.fetch({
 
 &nbsp;
 
+---
 
-Dependencies: Backbone.js and underscore.js
+Dependency: Underscore.js
+**Implied: Backbone.js*
