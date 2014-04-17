@@ -43,15 +43,22 @@ Pass `exhaust` option as callback - when retries fail, run this
 
 ```javascript
 myModel.fetch({
-  exhaust : function () {
-    //handle error
+  exhaust : function (jqXHR, textStatus, errorThrown) {
+    // Handle Error:
+    if (jqXHR.status > 500) {
+      //do something about Server Error
+    } else if (jqXHR.status > 400) {
+      //do something about Client Error
+    }
   }
 });
 ```
 
-&nbsp;
-
 ---
 
-Dependency: Underscore.js<br>
-*<em>Implied: Backbone.js<em>
+&nbsp;
+
+* Changelog &gt;&gt;&gt; [releases](https://github.com/gdibble/backbone-ajaxretry/releases)
+
+* Dependency: [Underscore.js](http://underscorejs.org/)<br>
+  *<em>Implied: [Backbone.js](backbonejs.org)<em>
