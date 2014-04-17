@@ -29,9 +29,9 @@ var Backbone = require('backbone');
 var _        = require('underscore');
 //Defaults that can be overridden via set
 var settings = {
-  base: 2.67,
-  y: 0.25,
-  retryCount: 2
+  base:       2.718281828,
+  y:          0.25,
+  retryCount: 3
 };
 
 //-----------------------------------------------------------------------------
@@ -92,6 +92,4 @@ Backbone.ajax = function (options) {
   return Backbone.$.ajax.apply(Backbone.$, args);
 };
 
-module.exports = {
-  set: setOptions
-};
+module.exports = { set: setOptions };
