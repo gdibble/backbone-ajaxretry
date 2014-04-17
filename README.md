@@ -53,5 +53,5 @@ myModel.fetch({
 
 ---
 
-Dependency: Underscore.js
-**Implied: Backbone.js*
+Dependency: Underscore.js<br>
+*<em>Implied: Backbone.js<em>
