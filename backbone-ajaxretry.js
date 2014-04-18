@@ -1,28 +1,8 @@
 /*!
- * Backbone.js ajaxRetry - v1.0.0 - 2014-04-07
+ * Backbone.js ajaxRetry
  * https://github.com/gdibble/backbone-ajaxretry
  * Copyright 2014 Gabriel Dibble; Licensed MIT
- *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *
- * Extend Backbone.ajax's proxy of $.ajax with Exponential Retries on req fail
- *  * Default settings:
- *      {
- *        "base": 2.67,
- *        "y": 0.25,
- *        "retryCount": 2,
- *      }
- *  * Overwrite default settings via set function
- *  * Pass 'exhaust' option as callback - when retries fail, run this function
- *    (if 'exhaust' method is not passed, retries will end without callback)
- *    Example:
- *      myModel.fetch({
- *        exhaust : function () {
- *          //handle error
- *        }
- *      });
- *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ */
 
 
 var Backbone = require('backbone');
