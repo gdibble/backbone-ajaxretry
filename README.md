@@ -23,7 +23,7 @@ var ajaxRetry = require('backbone-ajaxretry');
 &nbsp;
 
 ## Usage
-The defaults settings are:
+The default settings are:
 
 ```javascript
 {
