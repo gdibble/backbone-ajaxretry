@@ -10,9 +10,13 @@ Extend Backbone.ajax's proxy of $.ajax with Exponential Retries on request fail.
 
 ## Installation
 
-In your client app `main.js`, simply add:
+```
+npm install --save backbone-ajaxretry
+```
 
-  ```javascript
+&nbsp;<br>In your client app `main.js`, simply add:
+
+```javascript
 var ajaxRetry = require('backbone-ajaxretry');
 ```
 
