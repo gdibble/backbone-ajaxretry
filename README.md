@@ -66,3 +66,5 @@ myModel.fetch({
 
 * Dependency: [Underscore.js](http://underscorejs.org/)<br>
   *<em>Implied: [Backbone.js](backbonejs.org)<em>
+
+* [npmjs.org/package/backbone-ajaxretry](https://www.npmjs.org/package/backbone-ajaxretry)
