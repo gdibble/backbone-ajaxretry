@@ -49,9 +49,9 @@ Pass `exhaust` option as callback - when retries fail, run this
 myModel.fetch({
   exhaust : function (jqXHR, textStatus, errorThrown) {
     // Handle Error:
-    if (jqXHR.status > 500) {
+    if (jqXHR.status >= 500) {
       //do something about Server Error
-    } else if (jqXHR.status > 400) {
+    } else if (jqXHR.status >= 400) {
       //do something about Client Error
     }
   }
