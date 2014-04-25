@@ -42,17 +42,17 @@ function exhausted() {
 }
 
 //recurse the ajax request
-function ajaxRetry() {
+function ajaxRetry(jqXHR) {
   var self = this;
   if (this.hasOwnProperty('retries')) {
     this.recursed = this.recursed === undefined ? 0 : this.recursed + 1;
-    if (this.recursed < this.retries) {
+    if ((jqXHR && jqXHR.status < 300) || this.recursed >= this.retries) {
+      exhausted.apply(self, arguments);
+    } else if (this.recursed < this.retries) {
       setTimeout(function () {
         $.ajax(self);
         // console.log('recursed', self.url, self.recursed, 'in ' + exponentialDelay(self.recursed) + 'ms');
       }, exponentialDelay(this.recursed));
-    } else {
-      exhausted.apply(self, arguments);
     }
   } else {
     exhausted.apply(self, arguments);
