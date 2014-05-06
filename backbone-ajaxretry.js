@@ -46,7 +46,7 @@ function ajaxRetry(jqXHR) {
   var self = this;
   if (this.hasOwnProperty('retries')) {
     this.recursed = this.recursed === undefined ? 0 : this.recursed + 1;
-    if ((jqXHR && jqXHR.status < 300) || this.recursed >= this.retries) {
+    if ((jqXHR && (jqXHR.status < 300 || jqXHR.status >= 500)) || this.recursed >= this.retries) {
       exhausted.apply(self, arguments);
     } else if (this.recursed < this.retries) {
       setTimeout(function () {
