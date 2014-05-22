@@ -52,14 +52,19 @@ myModel.fetch({
   }
 });
 ```
+&nbsp;
 
 ---
 
-&nbsp;
+* **Changelog &gt;&gt;&gt;** [releases](https://github.com/gdibble/backbone-ajaxretry/releases)
 
-* Changelog &gt;&gt;&gt; [releases](https://github.com/gdibble/backbone-ajaxretry/releases)
+---
 
-* Dependency: [Underscore.js](http://underscorejs.org/)<br>
-  *<em>Implied: [Backbone.js](backbonejs.org)<em>
+* **Dependency:** [Underscore.js](http://underscorejs.org/)
+  * ***Implied:***
+    * [Backbone.js](backbonejs.org)
+    * [jQuery](http://jquery.com), [zepto.js](http://zeptojs.com), [ENDER](http://ender.jit.su) **or** even your own `$` library defining `$.ajax`
+
+---
 
 * [npmjs.org/package/backbone-ajaxretry](https://www.npmjs.org/package/backbone-ajaxretry)
