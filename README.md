@@ -62,7 +62,7 @@ myModel.fetch({
 
 * **Dependency:** [Underscore.js](http://underscorejs.org/)
   * ***Implied:***
-    * [Backbone.js](backbonejs.org)
+    * [Backbone.js](http://backbonejs.org)
     * [jQuery](http://jquery.com), [zepto.js](http://zeptojs.com), [ENDER](http://ender.jit.su) **or** even your own `$` library defining `$.ajax`
 
 ---
