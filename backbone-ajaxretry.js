@@ -69,6 +69,10 @@ Backbone.ajax = function (options) {
     retries: settings.retryCount,
     error:   function () { ajaxRetry.apply(this, arguments); }
   });
+
+  /*global jQuery, Zepto, ender, $*/// per Backbone, library defining `$`:
+  Backbone.$ = jQuery || Zepto || ender || /* Or your-own: */ $;
+
   return Backbone.$.ajax.apply(Backbone.$, args);
 };
 
