@@ -14,10 +14,16 @@ Extend Backbone.ajax's proxy of $.ajax with Exponential Retries on request fail.
 npm install --save backbone-ajaxretry
 ```
 
-&nbsp;<br>In your client app `main.js`, simply add:
+&nbsp;<br>In your client app `main.js`, add the following line to default retry settings:
 
 ```javascript
-var ajaxRetry = require('backbone-ajaxretry');
+require('backbone-ajaxretry');
+```
+
+Or override any of the default settings using `set`: passing keyword arguments
+
+```javascript
+require('backbone-ajaxretry').set({ y:0.3 });
 ```
 
 &nbsp;
@@ -33,17 +39,11 @@ The default settings are:
 }
 ```
 
-Override any of the default settings using `set`: passing keyword arguments
-
-```javascript
-ajaxRetry.set({ y:0.3 });
-```
 &nbsp;
 
-Pass `exhaust` option as callback - when retries fail, run this 
-
+For Backbone.js sync, fetch, save or destroy, pass `exhaust` in the options object as a callback function to run when retries fail
   * please note that `exhaust` supersedes the `error` callback
-  * if `exhaust` method is not passed, retries will end without callback
+  * if `exhaust` method is not passed, retries will end without further action
 
 ```javascript
 myModel.fetch({
