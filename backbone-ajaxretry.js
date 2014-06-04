@@ -34,10 +34,12 @@ function exponentialDelay(x) {
 
 //hit retry limit
 function exhausted() {
+  var args = Array.prototype.slice.call(arguments, 0);
+  _.extend(args[0], this);
   // console.log('exhausted', this.url);
   if (this.hasOwnProperty('exhaust')) {
     // console.log('>>> called this.exhaust', this.exhaust);
-    this.exhaust.apply(this, arguments);
+    this.exhaust.apply(this, args);
   }
 }
 
