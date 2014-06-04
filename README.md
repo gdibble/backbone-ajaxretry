@@ -44,6 +44,7 @@ The default settings are:
 For Backbone.js sync, fetch, save or destroy, pass `exhaust` in the options object as a callback function to run when retries fail
   * please note that `exhaust` supersedes the `error` callback
   * if `exhaust` method is not passed, retries will end without further action
+  * the returned `jqXHR` object has been extended with the ajax request options, <br>thus allowing `jqXHR.type`, `jqXHR.url`, etcetera
 
 ```javascript
 myModel.fetch({
