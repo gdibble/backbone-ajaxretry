@@ -5,13 +5,15 @@
  */
 
 
+var _$ajax;
 var Backbone = require('backbone');
 var _        = require('underscore');
 //Defaults that can be overridden via set
 var settings = {
-  base:       2.718281828,
-  y:          0.25,
-  retryCount: 3
+  base:         2.718281828,
+  y:            0.25,
+  retryCount:   3,
+  onlyBackbone: false
 };
 
 //-----------------------------------------------------------------------------
@@ -61,17 +63,37 @@ function ajaxRetry(jqXHR) {
   }
 }
 
-//-----------------------------------------------------------------------------
-
-
-//extend for retry functionality
-Backbone.ajax = function (options) {
-  var args = Array.prototype.slice.call(arguments, 0);
+function extender(args, options) {
   _.extend(args[0], options ? options : {}, {
     retries: settings.retryCount,
     error:   function () { ajaxRetry.apply(this, arguments); }
   });
-  return Backbone.$.ajax.apply(Backbone.$, args);
-};
+}
+
+function sliceArguments() {
+  return Array.prototype.slice.call(arguments, 0);
+}
+
+//-----------------------------------------------------------------------------
+
+
+//extend for retry functionality:
+if (!settings.onlyBackbone) {
+  //retry regular $.ajax thus also Backbone ajax requests
+  _$ajax = $.ajax;
+  $.ajax = function (options) {
+    var args = sliceArguments(arguments);
+    extender(args, options);
+    return _$ajax.apply($, args);
+  };
+} else {
+  //retry only Backbone ajax requests422
+  Backbone.ajax = function (options) {
+    var args = sliceArguments(arguments);
+    extender(args, options);
+    return Backbone.$.ajax.apply(Backbone.$, args);
+  };
+}
+
 
 module.exports = { set: setOptions };

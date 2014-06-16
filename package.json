@@ -1,6 +1,6 @@
 {
   "name": "backbone-ajaxretry",
-  "description": "Exponentially retry Backbone.ajax requests",
+  "description": "Exponentially retry Backbone.ajax & $.ajax requests",
   "version": "1.1.7",
   "author": {
     "name": "Gabriel Dibble",

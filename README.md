@@ -1,10 +1,6 @@
 # Backbone.js ajaxRetry
 
-#### Exponentially retry Backbone.ajax requests
-
----
-
-Extend Backbone.ajax's proxy of $.ajax with Exponential Retries on request fail.
+#### Exponentially retry Backbone.ajax and $.ajax requests
 
 &nbsp;
 
@@ -35,11 +31,14 @@ The default settings are:
 {
   base: 2.718281828,
   y: 0.25,
-  retryCount: 3
+  retryCount: 3,
+  onlyBackbone: false
 }
 ```
 
 &nbsp;
+
+By default both `Backbone.ajax` and `$.ajax` [Server Errors](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error) are retried. To only retry `Backbone.ajax` requests and not also [regular] `$.ajax` requests, change the `onlyBackbone` default setting to `true`.
 
 For Backbone.js sync, fetch, save or destroy, pass `exhaust` in the options object as a callback function to run when retries fail
   * please note that `exhaust` supersedes the `error` callback
@@ -47,7 +46,17 @@ For Backbone.js sync, fetch, save or destroy, pass `exhaust` in the options obje
   * the returned `jqXHR` object has been extended with the ajax request options, <br>thus allowing `jqXHR.type`, `jqXHR.url`, etcetera
 
 ```javascript
+// Backbone ex.
 myModel.fetch({
+  exhaust : function (jqXHR, textStatus, errorThrown) {
+    // Handle Internal Server Error
+  }
+});
+
+// $.ajax ex.
+$.ajax({
+  url: '/test',
+  type: 'GET',
   exhaust : function (jqXHR, textStatus, errorThrown) {
     // Handle Internal Server Error
   }
