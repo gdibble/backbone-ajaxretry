@@ -3,6 +3,7 @@
  * https://github.com/gdibble/backbone-ajaxretry
  * Copyright 2014 Gabriel Dibble; Licensed MIT
  */
+(function (define) { define(function (require, exports, module) { 'use strict';
 
 
 var _$ajax;
@@ -97,3 +98,6 @@ if (!settings.onlyBackbone) {
 
 
 module.exports = { set: setOptions };
+
+
+}); }(typeof define == 'function' && define.amd ? define : function (factory) { factory(require, exports, module); })); //end UDM CommonJS wrapper
