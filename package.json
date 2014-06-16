@@ -28,7 +28,7 @@
       "url": "https://github.com/gdibble/backbone-ajaxretry/blob/master/LICENSE"
     }
   ],
-  "main": "backbone-ajaxretry.js",
+  "main": "backbone-ajaxretry.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/gdibble/backbone-ajaxretry.git"
