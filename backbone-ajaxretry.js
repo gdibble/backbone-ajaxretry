@@ -3,7 +3,7 @@
  * https://github.com/gdibble/backbone-ajaxretry
  * Copyright 2014 Gabriel Dibble; Licensed MIT
  */
-(function (define) { define(function (require, exports, module) { 'use strict';
+(function (define) { define(function (require, exports, module) { //'use strict';
 
 
 var _$ajax;
@@ -65,7 +65,7 @@ function ajaxRetry(jqXHR) {
 }
 
 function extender(args, options) {
-  _.extend(args[0], options ? options : {}, {
+  _.extend(args[0], options && typeof options === 'object' ? options : {}, {
     retries: settings.retryCount,
     error:   function () { ajaxRetry.apply(this, arguments); }
   });
@@ -83,8 +83,15 @@ if (!settings.onlyBackbone) {
   //retry regular $.ajax thus also Backbone ajax requests
   _$ajax = $.ajax;
   $.ajax = function (options) {
-    var args = sliceArguments(arguments);
-    extender(args, options);
+    var args;
+    if (typeof options === 'string') {
+      arguments[1].url = options; //in this case, options is actually the url passed to $.get/$.post
+      args = sliceArguments(arguments[1]);
+      extender(args, options);
+    } else {
+      args = sliceArguments(arguments);
+      extender(args, options);
+    }
     return _$ajax.apply($, args);
   };
 } else {
@@ -100,4 +107,4 @@ if (!settings.onlyBackbone) {
 module.exports = { set: setOptions };
 
 
-}); }(typeof define == 'function' && define.amd ? define : function (factory) { factory(require, exports, module); })); //end UDM CommonJS wrapper
+}); }(typeof define === 'function' && define.amd ? define : function (factory) { factory(require, exports, module); })); //end UMD CommonJS wrapper
