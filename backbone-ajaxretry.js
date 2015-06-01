@@ -4,11 +4,13 @@
  * https://github.com/gdibble/backbone-ajaxretry
  * Copyright 2015 Gabriel Dibble; Licensed MIT
  */
+var defaults = require('lodash.defaults');
+var extend   = require('extend-object');
+
+
 (function (define) { define(function (require, exports, module) { //'use strict';
 
 
-var defaults = require('lodash.defaults');
-var extend   = require('extend-object');
 var Backbone = require('backbone');
 var settings = { //Defaults that can be overridden via set
   base:         2.718281828,
